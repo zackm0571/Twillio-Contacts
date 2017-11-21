@@ -3,7 +3,9 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 #include <iostream>
+#include <vector>
 using namespace rapidjson;
+using namespace std;
 int main(){
     // 1. Parse a JSON string into DOM.
     const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
@@ -21,6 +23,8 @@ int main(){
 
     // Output {"project":"rapidjson","stars":11}
     std::cout << buffer.GetString() << std::endl;
+	BaseContactSdk *sdk = new BaseContactSdk();
+	vector<Contact> contacts = sdk->getContacts();
 
 	return 0;
 }
