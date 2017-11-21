@@ -29,9 +29,18 @@ extern "C" {
 				contact.firstName = itr->GetObject().FindMember("first")->value.GetString();
 			}
 			
+
+		 	if(itr->GetObject().HasMember("last")){
+				contact.lastName = itr->GetObject().FindMember("last")->value.GetString();
+			}
+		
+
+		 	if(itr->GetObject().HasMember("phone")){
+				contact.phoneNumber = itr->GetObject().FindMember("phone")->value.GetString();
+			}
+	
 			contacts.push_back(contact);
 		}
-
 
 		return contacts;
 	}
