@@ -2,8 +2,8 @@ OBJECT_FILES=main.o base-contact-sdk.o
 CC=g++
 TARGET=base-contact-sdk
 
-INC_PATH = -I src/inc
-LIB_PATH = -L/lib/rapidjson/include
+INC_PATH = -I src/inc 
+LIB_PATH = -L lib/
 
 base-contact-sdk.o: src/base-contact-sdk.cpp 
 	$(CC) $(INC_PATH) $(LIB_PATH) -c src/base-contact-sdk.cpp 
