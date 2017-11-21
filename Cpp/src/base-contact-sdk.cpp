@@ -20,36 +20,17 @@ extern "C" {
 		vector<Contact> contacts;  
 		Document d;
     		d.Parse(contacts_json.c_str());
+		//const Value& a = d.GetObject();
 
-		/*// Using a reference for consecutive access is handy and faster.
-		const Value& arr = d[0];
-		//assert(arr.IsArray());
-		for (SizeType i = 0; i < arr.Size(); i++) // Uses SizeType instead of size_t{
-			const Value& val = arr[i];
-			val["first"];
-			Contact contact;
-			contact.firstName  = val["first"];
-		}
-		*/
+		for (Value::ConstValueIterator itr = d.Begin(); itr != d.End(); ++itr){
 
-		/*for (Value::ConstMemberIterator itr = d.MemberBegin();
-    		itr != d.MemberEnd(); ++itr)
-		{
 			Contact contact;
-			contact.firstName = itr->getValue();
+		 	if(itr->GetObject().HasMember("first")){
+				contact.firstName = itr->GetObject().FindMember("first")->value.GetString();
+			}
+			
 			contacts.push_back(contact);
 		}
-		*/
-
-		const Value& a = d[0];
-
-		for (Value::ConstValueIterator itr = a.Begin(); itr != a.End(); ++itr){
-			Contact contact;
-			contact.firstName = itr->GetString();
-			contacts.push_back(contact);
-	
-		}
-
 
 
 		return contacts;

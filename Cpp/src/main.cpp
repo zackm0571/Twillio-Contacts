@@ -25,6 +25,6 @@ int main(){
     std::cout << buffer.GetString() << std::endl;
 	BaseContactSdk *sdk = new BaseContactSdk();
 	vector<Contact> contacts = sdk->getContacts();
-
+	std::cout << contacts.at(0).firstName << std::endl;
 	return 0;
 }
