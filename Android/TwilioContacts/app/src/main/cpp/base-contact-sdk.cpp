@@ -44,7 +44,7 @@ extern "C" {
 			contacts.push_back(contact);
 		}
 
-		contactsDoc = d;
+		//contactsDoc = d;
 		contactsData = contacts;
 		return contacts;
 	}
@@ -58,7 +58,7 @@ extern "C" {
 	}
 
 
-	bool addContact(Contact contact){
+	bool BaseContactSdk::addContact(Contact contact){
 		contactsData.push_back(contact);
 		//server upload
 		return true;
