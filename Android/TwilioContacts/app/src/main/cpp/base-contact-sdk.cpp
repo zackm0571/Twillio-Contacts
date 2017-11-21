@@ -1,4 +1,4 @@
-#include <base-contact-sdk.h>
+#include "base-contact-sdk.h"
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
@@ -44,7 +44,7 @@ extern "C" {
 			contacts.push_back(contact);
 		}
 
-		//contactsDoc = d;
+		contactsDoc = d;
 		contactsData = contacts;
 		return contacts;
 	}
