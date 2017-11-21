@@ -3,7 +3,7 @@ CC=g++
 TARGET=base-contact-sdk
 
 INC_PATH = -I src/inc
-LIB_PATH = -L lib
+LIB_PATH = -L/lib/rapidjson/include
 
 base-contact-sdk.o: src/base-contact-sdk.cpp 
 	$(CC) $(INC_PATH) $(LIB_PATH) -c src/base-contact-sdk.cpp 
