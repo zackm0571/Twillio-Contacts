@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Contact.h"
+#import "base-contact-sdk.h"
+@protocol ContactListener<NSObject>
+-(void)onAddContact;
+-(void)onContactUpdated:(Contact) oldContact :(Contact) newContact;
+-(void)onContactsRefreshed;
+@end
+
 @interface ContactSdk : NSObject
-@property NSMutableArray *contacts;
--(void)addContact:(Contact*)contact;
+-(void)addContact:(Contact)contact;
+-(vector<Contact>)getContacts;
++(ContactSdk*)getInstance;
 @end

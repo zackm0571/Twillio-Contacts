@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Contact : NSObject
+@interface TWContact : NSObject
 @property NSString *firstName;
 @property NSString *lastName;
 @property NSString *phoneNumber;

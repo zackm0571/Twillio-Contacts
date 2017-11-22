@@ -11,20 +11,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIContactCellTableViewCell">
             <connections>
-                <outlet property="firstNameLabel" destination="zFP-Mw-ip5" id="esc-IB-3s0"/>
-                <outlet property="lastNameLabel" destination="HSW-YN-CaR" id="ghm-bl-7XA"/>
-                <outlet property="phoneNumberLabel" destination="CO5-8N-kcS" id="dr0-jm-osc"/>
+                <outlet property="firstNameLabel" destination="zFP-Mw-ip5" id="6lG-Tx-fov"/>
+                <outlet property="lastNameLabel" destination="HSW-YN-CaR" id="eEg-oU-fr3"/>
+                <outlet property="phoneNumberLabel" destination="CO5-8N-kcS" id="M49-hO-OzV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="UIContactCellTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIContactCellTableViewCell" id="KGk-i7-Jjw" customClass="UIContactCellTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="420" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="420" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="firstName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFP-Mw-ip5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="firstName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFP-Mw-ip5">
                         <rect key="frame" x="23" y="11" width="75" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="dNt-S1-dGt"/>
@@ -33,7 +33,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lastName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSW-YN-CaR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lastName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSW-YN-CaR">
                         <rect key="frame" x="172.5" y="11" width="75" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="J4b-HO-7J6"/>
@@ -42,7 +42,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO5-8N-kcS">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO5-8N-kcS">
                         <rect key="frame" x="302" y="-1" width="110" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="6FV-8V-ABk"/>
@@ -63,6 +63,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="firstNameLabel" destination="zFP-Mw-ip5" id="BKd-vY-zhH"/>
+                <outlet property="lastNameLabel" destination="HSW-YN-CaR" id="c1C-ne-c1e"/>
+                <outlet property="phoneNumberLabel" destination="CO5-8N-kcS" id="gY1-lI-KCc"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

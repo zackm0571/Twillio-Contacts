@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface UIContactCellTableViewCell : UITableViewCell
+- (id)initWithIdentifier:(NSString *)identifier;
 @property (strong, nonatomic) IBOutlet UILabel *firstNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *lastNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *phoneNumberLabel;
-
 @end

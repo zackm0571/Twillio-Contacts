@@ -8,5 +8,5 @@
 
 #import "Contact.h"
 
-@implementation Contact
+@implementation TWContact
 @end
