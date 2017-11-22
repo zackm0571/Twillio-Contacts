@@ -15,6 +15,10 @@ static BaseContactSdk sdk;
 static ContactSdk *instance;
 -(void)addContact:(Contact)contact{
     sdk.addContact(contact);
+    if(self.listener){
+        [self.listener onAddContact];
+    }
+    
 }
 -(vector<Contact>)getContacts{
     return sdk.getContacts();

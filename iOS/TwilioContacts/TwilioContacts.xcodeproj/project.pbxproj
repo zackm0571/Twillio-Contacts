@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5E62F2A51FC5D84A001E719F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2A41FC5D84A001E719F /* AppDelegate.m */; };
-		5E62F2A81FC5D84A001E719F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2A71FC5D84A001E719F /* MainViewController.m */; };
 		5E62F2AB1FC5D84A001E719F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2A91FC5D84A001E719F /* Main.storyboard */; };
 		5E62F2AD1FC5D84A001E719F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2AC1FC5D84A001E719F /* Assets.xcassets */; };
 		5E62F2B01FC5D84A001E719F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2AE1FC5D84A001E719F /* LaunchScreen.storyboard */; };
@@ -16,7 +15,11 @@
 		5E62F2BE1FC5DB20001E719F /* UIContactCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2BC1FC5DB20001E719F /* UIContactCellTableViewCell.m */; };
 		5E62F2BF1FC5DB20001E719F /* UIContactCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2BD1FC5DB20001E719F /* UIContactCellTableViewCell.xib */; };
 		5E62F2C21FC5DB38001E719F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2C11FC5DB38001E719F /* Contact.m */; };
-		5E62F2C61FC5DF10001E719F /* ContactSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2C51FC5DF10001E719F /* ContactSdk.m */; };
+		5E62F2CB1FC5E399001E719F /* ContactSdk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CA1FC5E399001E719F /* ContactSdk.mm */; };
+		5E62F2D01FC5E7B5001E719F /* base-contact-sdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */; };
+		5E62F2D11FC5E7B5001E719F /* inc in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CF1FC5E7B5001E719F /* inc */; };
+		5E62F2FC1FC5EDA2001E719F /* base-contact-sdk.h in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2FB1FC5EDA2001E719F /* base-contact-sdk.h */; };
+		5E62F2FE1FC5EE37001E719F /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2FD1FC5EE37001E719F /* MainViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +27,6 @@
 		5E62F2A31FC5D84A001E719F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E62F2A41FC5D84A001E719F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5E62F2A61FC5D84A001E719F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		5E62F2A71FC5D84A001E719F /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5E62F2AA1FC5D84A001E719F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E62F2AC1FC5D84A001E719F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E62F2AF1FC5D84A001E719F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,7 +38,11 @@
 		5E62F2C01FC5DB38001E719F /* Contact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		5E62F2C11FC5DB38001E719F /* Contact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		5E62F2C41FC5DF10001E719F /* ContactSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSdk.h; sourceTree = "<group>"; };
-		5E62F2C51FC5DF10001E719F /* ContactSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactSdk.m; sourceTree = "<group>"; };
+		5E62F2CA1FC5E399001E719F /* ContactSdk.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactSdk.mm; sourceTree = "<group>"; };
+		5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "base-contact-sdk.cpp"; path = "TwilioContacts/Cpp/src/base-contact-sdk.cpp"; sourceTree = "<group>"; };
+		5E62F2CF1FC5E7B5001E719F /* inc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inc; path = TwilioContacts/Cpp/src/inc; sourceTree = "<group>"; };
+		5E62F2FB1FC5EDA2001E719F /* base-contact-sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "base-contact-sdk.h"; path = "TwilioContacts/Cpp/src/inc/base-contact-sdk.h"; sourceTree = "<group>"; };
+		5E62F2FD1FC5EE37001E719F /* MainViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,9 @@
 		5E62F2971FC5D84A001E719F = {
 			isa = PBXGroup;
 			children = (
+				5E62F2FB1FC5EDA2001E719F /* base-contact-sdk.h */,
+				5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */,
+				5E62F2CF1FC5E7B5001E719F /* inc */,
 				5E62F2A21FC5D84A001E719F /* TwilioContacts */,
 				5E62F2A11FC5D84A001E719F /* Products */,
 			);
@@ -69,13 +78,14 @@
 		5E62F2A21FC5D84A001E719F /* TwilioContacts */ = {
 			isa = PBXGroup;
 			children = (
+				5E62F2C71FC5E1E9001E719F /* Cpp */,
 				5E62F2C31FC5DF02001E719F /* Managers */,
 				5E62F2BA1FC5DAB0001E719F /* UI */,
 				5E62F2B91FC5DAAA001E719F /* Models */,
 				5E62F2A31FC5D84A001E719F /* AppDelegate.h */,
 				5E62F2A41FC5D84A001E719F /* AppDelegate.m */,
 				5E62F2A61FC5D84A001E719F /* MainViewController.h */,
-				5E62F2A71FC5D84A001E719F /* MainViewController.m */,
+				5E62F2FD1FC5EE37001E719F /* MainViewController.mm */,
 				5E62F2A91FC5D84A001E719F /* Main.storyboard */,
 				5E62F2AC1FC5D84A001E719F /* Assets.xcassets */,
 				5E62F2AE1FC5D84A001E719F /* LaunchScreen.storyboard */,
@@ -107,10 +117,17 @@
 		5E62F2C31FC5DF02001E719F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5E62F2CA1FC5E399001E719F /* ContactSdk.mm */,
 				5E62F2C41FC5DF10001E719F /* ContactSdk.h */,
-				5E62F2C51FC5DF10001E719F /* ContactSdk.m */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		5E62F2C71FC5E1E9001E719F /* Cpp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cpp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E62F2FC1FC5EDA2001E719F /* base-contact-sdk.h in Sources */,
+				5E62F2FE1FC5EE37001E719F /* MainViewController.mm in Sources */,
+				5E62F2D01FC5E7B5001E719F /* base-contact-sdk.cpp in Sources */,
+				5E62F2D11FC5E7B5001E719F /* inc in Sources */,
 				5E62F2BE1FC5DB20001E719F /* UIContactCellTableViewCell.m in Sources */,
-				5E62F2C61FC5DF10001E719F /* ContactSdk.m in Sources */,
-				5E62F2A81FC5D84A001E719F /* MainViewController.m in Sources */,
+				5E62F2CB1FC5E399001E719F /* ContactSdk.mm in Sources */,
 				5E62F2C21FC5DB38001E719F /* Contact.m in Sources */,
 				5E62F2B31FC5D84A001E719F /* main.m in Sources */,
 				5E62F2A51FC5D84A001E719F /* AppDelegate.m in Sources */,
@@ -323,28 +343,34 @@
 		5E62F2B71FC5D84A001E719F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A786WT7EUY;
+				HEADER_SEARCH_PATHS = Cpp/src/inc;
 				INFOPLIST_FILE = TwilioContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zackmatthews.TwilioContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = Cpp/src/inc;
 			};
 			name = Debug;
 		};
 		5E62F2B81FC5D84A001E719F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A786WT7EUY;
+				HEADER_SEARCH_PATHS = Cpp/src/inc;
 				INFOPLIST_FILE = TwilioContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zackmatthews.TwilioContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = Cpp/src/inc;
 			};
 			name = Release;
 		};
