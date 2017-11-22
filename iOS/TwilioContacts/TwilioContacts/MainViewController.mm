@@ -25,8 +25,19 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [[ContactSdk getInstance] setListener:self];
 }
 
+-(void)testAddContact{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        sleep(3);
+        Contact contact;
+        contact.firstName = "Robert";
+        contact.lastName = "Paulson";
+        contact.phoneNumber = "+18005555555";
+        [[ContactSdk getInstance] addContact:contact];
+    });
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -55,5 +66,16 @@
     
     return [[ContactSdk getInstance] getContacts].size();
 }
-
+-(void)onContactUpdated:(Contact)oldContact :(Contact)newContact{
+    
+}
+-(void)onContactsRefreshed{
+    
+}
+-(void)onAddContact{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+    });
+    
+}
 @end

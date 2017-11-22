@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface MainViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+#import "ContactSdk.h"
+@interface MainViewController : UIViewController<UITableViewDelegate,
+                                                            UITableViewDataSource, ContactListener>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
