@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TwilioContacts</string>
+    <string name="first_name_hint">First name</string>
+    <string name="last_name_hint">Last name</string>
 </resources>

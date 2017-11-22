@@ -5,7 +5,7 @@ package com.zackmatthews.twiliocontacts.models;
  */
 
 public class Contact {
-    String firstName;
-    String lastName;
-    String phoneNumber; //E.164
+    public String firstName;
+    public String lastName;
+    public String phoneNumber; //E.164
 }
