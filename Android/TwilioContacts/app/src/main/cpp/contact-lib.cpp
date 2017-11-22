@@ -86,7 +86,6 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
     jfieldID lastname = (env)->GetFieldID(cls, "lastName", "Ljava/lang/String;");
     jfieldID phoneNumber = (env)->GetFieldID(cls, "phoneNumber", "Ljava/lang/String;");
 
-
     jstring firstString= (jstring)(env)->GetObjectField(contact, firstname);
     jstring lastString= (jstring)(env)->GetObjectField(contact, lastname);
     jstring phoneString= (jstring)(env)->GetObjectField(contact, phoneNumber);
@@ -96,9 +95,12 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
     nativeContact.phoneNumber = std::string(jstring2string(env, phoneString));
 
     sdk.getContacts();
-    sdk.addContact(nativeContact);
-    // TODO
-    return true;
+    bool isSuccessful = sdk.addContact(nativeContact);
+    jclass listenerClass = env->FindClass("com/zackmatthews/twiliocontacts/manager/ContactListener");
+    jmethodID onAddedMethodId = env->GetMethodID(listenerClass, "onContactAdded", "(Lcom/zackmatthews/twiliocontacts/models/Contact;)V");
+    env->CallVoidMethod(contactListener, onAddedMethodId, nativeContact);
+
+    return isSuccessful;
 }
 
 extern "C"
