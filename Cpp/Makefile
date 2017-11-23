@@ -13,6 +13,7 @@ main.o: src/main.cpp
 
 $(TARGET): $(OBJECT_FILES)
 	$(CC) $(INC_PATH) $(OBJECT_FILES) $(LIB_PATH) -o $(TARGET)
+
 all: base-contact-sdk.o main.o $(TARGET)
 	@echo done
 
