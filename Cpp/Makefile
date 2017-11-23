@@ -15,3 +15,6 @@ $(TARGET): $(OBJECT_FILES)
 	$(CC) $(INC_PATH) $(OBJECT_FILES) $(LIB_PATH) -o $(TARGET)
 all: base-contact-sdk.o main.o $(TARGET)
 	@echo done
+
+clean: base-contact-sdk.o main.o $(TARGET)
+	rm base-contact-sdk.o; rm main.o; rm $(TARGET)

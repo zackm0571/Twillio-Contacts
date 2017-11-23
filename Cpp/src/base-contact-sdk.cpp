@@ -57,10 +57,21 @@ extern "C" {
 		return contactsData;
 	}
 
-
+	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
+		for(int i = 0; i < contactsData.size(); i++){
+			Contact index = contactsData.at(i);
+			bool isContact = (oldContact.firstName == index.firstName) 
+					&& (oldContact.lastName == index.lastName)
+					&& (oldContact.phoneNumber == index.phoneNumber);
+			if(isContact){
+				contactsData.at(i) = newContact;
+				return true;
+			}
+		}	
+		return false;
+	}
 	bool BaseContactSdk::addContact(Contact contact){
 		contactsData.push_back(contact);
-		//server upload
 		return true;
 	}
 }
