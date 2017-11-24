@@ -77,15 +77,14 @@ JNIEXPORT jboolean JNICALL
 Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, jobject instance,
                                                                    jobject contact,
                                                                    jobject contactListener) {
-
     Contact nativeContact;
 
-    jclass cls = (env)->FindClass("com/zackmatthews/twiliocontacts/models/Contact");
+    jclass contactClass = (env)->GetObjectClass(contact);
     jclass listenerClass = env->GetObjectClass(contactListener);
 
-    jfieldID firstname = (env)->GetFieldID(cls, "firstName", "Ljava/lang/String;");
-    jfieldID lastname = (env)->GetFieldID(cls, "lastName", "Ljava/lang/String;");
-    jfieldID phoneNumber = (env)->GetFieldID(cls, "phoneNumber", "Ljava/lang/String;");
+    jfieldID firstname = (env)->GetFieldID(contactClass, "firstName", "Ljava/lang/String;");
+    jfieldID lastname = (env)->GetFieldID(contactClass, "lastName", "Ljava/lang/String;");
+    jfieldID phoneNumber = (env)->GetFieldID(contactClass, "phoneNumber", "Ljava/lang/String;");
 
     jstring firstString= (jstring)(env)->GetObjectField(contact, firstname);
     jstring lastString= (jstring)(env)->GetObjectField(contact, lastname);
@@ -107,7 +106,5 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
 extern "C"
 JNIEXPORT jobject JNICALL
 Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_getContacts(JNIEnv *env, jobject instance) {
-
     return vector2list(env, sdk.getContacts());
-
 }
