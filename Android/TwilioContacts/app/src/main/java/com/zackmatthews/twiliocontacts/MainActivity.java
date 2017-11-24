@@ -8,10 +8,11 @@ import android.widget.ListView;
 import com.zackmatthews.twiliocontacts.adapters.ContactListAdapater;
 import com.zackmatthews.twiliocontacts.manager.ContactSdk;
 import com.zackmatthews.twiliocontacts.models.Contact;
-
+/* Sample app, executes tests by default*
+ * set ENABLE_TESTS to false to disable tests */
 public class MainActivity extends Activity {
+    private static final boolean ENABLE_TESTS = true;
     private ListView listView;
-    private ContactListAdapater listViewAdapter;
     private Handler handler = new Handler();
     static {
         System.loadLibrary("native-lib");
@@ -22,10 +23,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ContactListAdapater listViewAdapter = new ContactListAdapater(MainActivity.this);
         listView = findViewById(R.id.contactListView);
-        listViewAdapter = new ContactListAdapater(MainActivity.this);
         listView.setAdapter(listViewAdapter);
-        addContactTest();
+        if(ENABLE_TESTS) {
+            addContactTest();
+        }
     }
 
 

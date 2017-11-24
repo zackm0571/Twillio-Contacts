@@ -1,7 +1,6 @@
 package com.zackmatthews.twiliocontacts.manager;
 
 import com.zackmatthews.twiliocontacts.models.Contact;
-
 import java.util.ArrayList;
 
 public class ContactSdk{
