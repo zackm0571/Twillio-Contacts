@@ -26,18 +26,15 @@ std::string jstring2string(JNIEnv *env, jstring jStr) {
 
 extern "C"
 jobject nativeContact2JavaContact(JNIEnv *env, Contact nativeContact){
-
     jobject javaContact;
 
     jclass cls = (env)->FindClass("com/zackmatthews/twiliocontacts/models/Contact");
     jmethodID constructor = (env)->GetMethodID(cls, "<init>", "()V");
     javaContact = (env)->NewObject(cls, constructor);
 
-
     jfieldID firstname = (env)->GetFieldID(cls, "firstName", "Ljava/lang/String;");
     jfieldID lastname = (env)->GetFieldID(cls, "lastName", "Ljava/lang/String;");
     jfieldID phoneNumber = (env)->GetFieldID(cls, "phoneNumber", "Ljava/lang/String;");
-
 
     (env)->SetObjectField(javaContact, firstname, env->NewStringUTF(nativeContact.firstName.c_str()));
     (env)->SetObjectField(javaContact, lastname, env->NewStringUTF(nativeContact.lastName.c_str()));
@@ -47,25 +44,14 @@ jobject nativeContact2JavaContact(JNIEnv *env, Contact nativeContact){
 }
 extern "C"
 jobject vector2list(JNIEnv *env, vector<Contact> contacts) {
-
-
-    jclass java_util_ArrayList;
-    jmethodID java_util_ArrayList_;
-    jmethodID java_util_ArrayList_size;
-    jmethodID java_util_ArrayList_get;
-    jmethodID java_util_ArrayList_add;
-
-
-    java_util_ArrayList      = static_cast<jclass>(env->NewGlobalRef(env->FindClass("java/util/ArrayList")));
-    java_util_ArrayList_     = env->GetMethodID(java_util_ArrayList, "<init>", "(I)V");
-    java_util_ArrayList_size = env->GetMethodID (java_util_ArrayList, "size", "()I");
-    java_util_ArrayList_get  = env->GetMethodID(java_util_ArrayList, "get", "(I)Ljava/lang/Object;");
-    java_util_ArrayList_add  = env->GetMethodID(java_util_ArrayList, "add", "(Ljava/lang/Object;)Z");
+    jclass java_util_ArrayList = static_cast<jclass>(env->NewGlobalRef(env->FindClass("java/util/ArrayList")));
+    jmethodID java_util_ArrayList_= env->GetMethodID(java_util_ArrayList, "<init>", "(I)V");
+    jmethodID java_util_ArrayList_add  = env->GetMethodID(java_util_ArrayList, "add", "(Ljava/lang/Object;)Z");
 
     jobject obj = env->NewObject(java_util_ArrayList, java_util_ArrayList_, contacts.size());
 
     for (int n = 0; n < contacts.size(); n++) {
-        Contact contact = (Contact) static_cast<Contact>(contacts[n]);
+        Contact contact = static_cast<Contact>(contacts[n]);
         jobject javaContact = nativeContact2JavaContact(env, contact);
         env->CallBooleanMethod(obj, java_util_ArrayList_add, javaContact);
     }
