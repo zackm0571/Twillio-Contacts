@@ -100,7 +100,7 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
     jmethodID onAddedMethodId = env->GetMethodID(listenerClass, "onContactAdded", "(Lcom/zackmatthews/twiliocontacts/models/Contact;)V");
     env->CallVoidMethod(contactListener, onAddedMethodId, contact);
 
-    return isSuccessful;
+    return (jboolean)isSuccessful;
 }
 
 extern "C"
