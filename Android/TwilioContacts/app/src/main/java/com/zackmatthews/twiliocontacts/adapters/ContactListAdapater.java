@@ -11,29 +11,25 @@ import com.zackmatthews.twiliocontacts.R;
 import com.zackmatthews.twiliocontacts.manager.ContactSdk;
 import com.zackmatthews.twiliocontacts.models.Contact;
 
-import java.util.List;
-
 /**
  * Created by zackmatthews on 11/22/17.
  */
 
 public class ContactListAdapater extends BaseAdapter implements ContactSdk.ContactListener{
-    private List<Contact> contacts;
     private Context ctx;
     public ContactListAdapater(Context context){
         this.ctx = context;
-        contacts = ContactSdk.getInstance().getContacts();
         ContactSdk.getInstance().setListener(ContactListAdapater.this);
     }
     @Override
     public int getCount() {
-        return contacts.size();
+        return ContactSdk.getInstance().getContacts().size();
     }
 
     @Override
     public Object getItem(int i) {
-        if(i >= contacts.size()) return null;
-        return contacts.get(i);
+        if(i >= ContactSdk.getInstance().getContacts().size()) return null;
+        return ContactSdk.getInstance().getContacts().get(i);
     }
 
     @Override
@@ -43,7 +39,7 @@ public class ContactListAdapater extends BaseAdapter implements ContactSdk.Conta
 
     @Override
     public void onContactAdded(Contact contact) {
-
+        notifyDataSetChanged();
     }
 
     @Override
@@ -82,7 +78,7 @@ public class ContactListAdapater extends BaseAdapter implements ContactSdk.Conta
         }
         if(holder == null) return view;
 
-        Contact contact = contacts.get(i);
+        Contact contact = ContactSdk.getInstance().getContacts().get(i);
         holder.firstName.setText(contact.firstName);
         holder.lastName.setText(contact.lastName);
         holder.phoneNumber.setText(contact.phoneNumber);

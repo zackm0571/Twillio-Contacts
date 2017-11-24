@@ -17,6 +17,7 @@
 @interface ContactSdk : NSObject
 @property id<ContactListener> listener;
 -(void)addContact:(Contact)contact;
+-(void)updateContact:(Contact)oldContact : (Contact)newContact;
 -(vector<Contact>)getContacts;
 +(ContactSdk*)getInstance;
 @end

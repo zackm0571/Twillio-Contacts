@@ -16,16 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UINib *nib = [UINib nibWithNibName:@"UIContactCellTableViewCell" bundle:nil];
-//    [[self tableView] registerNib:nib forCellReuseIdentifier:@"contact_cell"];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[ContactSdk getInstance] setListener:self];
+    [self testAddContact];
 }
 
 -(void)testAddContact{
@@ -36,6 +34,18 @@
         contact.lastName = "Paulson";
         contact.phoneNumber = "+18005555555";
         [[ContactSdk getInstance] addContact:contact];
+    });
+}
+
+-(void)testUpdateContact{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        sleep(3);
+        Contact contact = [[ContactSdk getInstance] getContacts].at(0);
+        Contact newContact = contact;
+        newContact.firstName = "Magic";
+        newContact.lastName = "Mike";
+        newContact.phoneNumber = "+17277777777";
+        [[ContactSdk getInstance] updateContact:contact :newContact];
     });
 }
 

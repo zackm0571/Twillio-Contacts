@@ -5,7 +5,6 @@
 
 static BaseContactSdk sdk;
 extern "C"
-
 std::string jstring2string(JNIEnv *env, jstring jStr) {
     if (!jStr)
         return "";
@@ -82,6 +81,8 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
     Contact nativeContact;
 
     jclass cls = (env)->FindClass("com/zackmatthews/twiliocontacts/models/Contact");
+    jclass listenerClass = env->GetObjectClass(contactListener);
+
     jfieldID firstname = (env)->GetFieldID(cls, "firstName", "Ljava/lang/String;");
     jfieldID lastname = (env)->GetFieldID(cls, "lastName", "Ljava/lang/String;");
     jfieldID phoneNumber = (env)->GetFieldID(cls, "phoneNumber", "Ljava/lang/String;");
@@ -96,9 +97,9 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
 
     sdk.getContacts();
     bool isSuccessful = sdk.addContact(nativeContact);
-    jclass listenerClass = env->FindClass("com/zackmatthews/twiliocontacts/manager/ContactListener");
+
     jmethodID onAddedMethodId = env->GetMethodID(listenerClass, "onContactAdded", "(Lcom/zackmatthews/twiliocontacts/models/Contact;)V");
-    env->CallVoidMethod(contactListener, onAddedMethodId, nativeContact);
+    env->CallVoidMethod(contactListener, onAddedMethodId, contact);
 
     return isSuccessful;
 }
