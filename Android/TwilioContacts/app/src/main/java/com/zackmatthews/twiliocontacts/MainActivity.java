@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         }
     }
 
-
+    /*** TESTS ***/
     private void addContactTest(){
         handler.postDelayed(new Runnable() {
             @Override
@@ -43,6 +43,5 @@ public class MainActivity extends Activity {
                 ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
             }
         }, 3000);
-
     }
 }
