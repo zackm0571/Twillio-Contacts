@@ -26,11 +26,6 @@ public class MainActivity extends Activity {
         listViewAdapter = new ContactListAdapater(MainActivity.this);
         listView.setAdapter(listViewAdapter);
         addContactTest();
-//        ContactSdk sdk = new ContactSdk();
-//        ArrayList<Contact> contacts = sdk.getContacts();
-//        for(Contact contact : contacts){
-//            System.out.println(contact.toString());
-//        }
     }
 
 
