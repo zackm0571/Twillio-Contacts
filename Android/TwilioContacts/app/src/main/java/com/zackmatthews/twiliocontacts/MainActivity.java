@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.zackmatthews.twiliocontacts.adapters.ContactListAdapater;
 import com.zackmatthews.twiliocontacts.manager.ContactSdk;
@@ -28,10 +29,23 @@ public class MainActivity extends Activity {
         listView.setAdapter(listViewAdapter);
         if(ENABLE_TESTS) {
             addContactTest();
+            updateContactTest();
         }
     }
 
     /*** TESTS ***/
+    private void startCountDownMessage(final String msg, final long time){
+        Runnable countDown = new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, msg + " " + String.valueOf(time / 1000), Toast.LENGTH_SHORT).show();
+                if(time > 0) {
+                    startCountDownMessage(msg, time - 1000);
+                }
+            }
+        };
+        handler.postDelayed(countDown, Toast.LENGTH_SHORT);
+    }
     private void addContactTest(){
         handler.postDelayed(new Runnable() {
             @Override
@@ -41,6 +55,20 @@ public class MainActivity extends Activity {
                 contact.lastName= "Bueller";
                 contact.phoneNumber = "+13774146999";
                 ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
+            }
+        }, 4500);
+    }
+
+    private void updateContactTest(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Contact contact = ContactSdk.getInstance().getContacts().get(0);
+                Contact newContact = new Contact();
+                newContact.firstName = "Mad";
+                newContact.lastName= "Max";
+                newContact.phoneNumber = "+13441888999";
+                ContactSdk.getInstance().updateContact(contact, newContact, (ContactListAdapater)listView.getAdapter());
             }
         }, 3000);
     }

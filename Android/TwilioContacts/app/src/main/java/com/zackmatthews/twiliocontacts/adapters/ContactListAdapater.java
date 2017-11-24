@@ -43,8 +43,8 @@ public class ContactListAdapater extends BaseAdapter implements ContactSdk.Conta
     }
 
     @Override
-    public void onContactUpdated(Contact newContact, Contact oldContact) {
-
+    public void onContactUpdated(Contact oldContact, Contact newContact) {
+        notifyDataSetChanged();
     }
 
     @Override

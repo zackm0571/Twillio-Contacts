@@ -6,7 +6,6 @@
 using namespace rapidjson;
 
 extern "C" {
-	Document contactsDoc;
 	vector<Contact> contactsData;
 	std::string contacts_json = "[{\"first\" : \"Alexander\",\"last\" : \"Bell\",\"phone\" : \"+16170000001\"},"
                                                 "{\"first\" : \"Thomas\",\"last\" : \"Watson\",\"phone\" : \"+16170000002\"},"
@@ -22,10 +21,8 @@ extern "C" {
 		vector<Contact> contacts;  
 		Document d;
     		d.Parse(contacts_json.c_str());
-		//const Value& a = d.GetObject();
 
 		for (Value::ConstValueIterator itr = d.Begin(); itr != d.End(); ++itr){
-
 			Contact contact;
 		 	if(itr->GetObject().HasMember("first")){
 				contact.firstName = itr->GetObject().FindMember("first")->value.GetString();
@@ -43,23 +40,21 @@ extern "C" {
 	
 			contacts.push_back(contact);
 		}
-
-		//contactsDoc = d;
-		contactsData = contacts;
 		return contacts;
 	}
 
 	vector<Contact> BaseContactSdk::getContacts(){
 		if(contactsData.size() == 0){
-			return parseContacts();
+			contactsData = parseContacts();
 		}
 
 		return contactsData;
 	}
 
 	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
+		Contact index;
 		for(int i = 0; i < contactsData.size(); i++){
-			Contact index = contactsData.at(i);
+			index = contactsData.at(i);
 			bool isContact = (oldContact.firstName == index.firstName) 
 					&& (oldContact.lastName == index.lastName)
 					&& (oldContact.phoneNumber == index.phoneNumber);

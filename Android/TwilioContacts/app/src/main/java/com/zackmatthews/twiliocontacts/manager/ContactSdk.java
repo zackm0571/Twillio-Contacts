@@ -34,5 +34,6 @@ public class ContactSdk{
 	private static ContactSdk instance;
 	private ContactListener listener;
 	public native boolean addContact(Contact contact, ContactListener contactListener);
+	public native boolean updateContact(Contact oldContact, Contact newContact, ContactListener contactListener);
 	public native ArrayList<Contact> getContacts();
 }

@@ -12,6 +12,7 @@ extern "C"{
 		public:
 		vector<Contact> getContacts();
 		bool addContact(Contact contact);
+		bool updateContact(Contact oldContact, Contact newContact);
 	};
 };
 

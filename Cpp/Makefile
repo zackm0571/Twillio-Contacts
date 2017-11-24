@@ -19,3 +19,7 @@ all: base-contact-sdk.o main.o $(TARGET)
 
 clean: base-contact-sdk.o main.o $(TARGET)
 	rm base-contact-sdk.o; rm main.o; rm $(TARGET)
+
+libProjects.so: base-contact-sdk.o 
+	$(CXX) -shared $^ -o $@ -Wl
+base-contact-sdk.o : CXXFLAGS+=-fPIC
