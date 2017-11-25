@@ -24,6 +24,7 @@
     [super viewDidAppear:animated];
     [[ContactSdk getInstance] setListener:self];
     [self testAddContact];
+    [self testUpdateContact];
 }
 
 -(void)testAddContact{
@@ -41,7 +42,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         sleep(3);
         Contact contact = [[ContactSdk getInstance] getContacts].at(0);
-        Contact newContact = contact;
+        Contact newContact;
         newContact.firstName = "Magic";
         newContact.lastName = "Mike";
         newContact.phoneNumber = "+17277777777";
@@ -77,7 +78,9 @@
     return [[ContactSdk getInstance] getContacts].size();
 }
 -(void)onContactUpdated:(Contact)oldContact :(Contact)newContact{
-    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 -(void)onContactsRefreshed{
     

@@ -18,7 +18,12 @@ static ContactSdk *instance;
     if(self.listener){
         [self.listener onAddContact];
     }
-    
+}
+
+-(BOOL)updateContact:(Contact)oldContact :(Contact)newContact{
+    sdk.updateContact(oldContact, newContact);
+    [self.listener onContactUpdated:oldContact :newContact ];
+    return FALSE;
 }
 -(vector<Contact>)getContacts{
     return sdk.getContacts();
