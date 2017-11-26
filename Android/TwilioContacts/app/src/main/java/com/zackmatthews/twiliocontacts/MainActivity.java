@@ -15,9 +15,6 @@ public class MainActivity extends Activity {
     private static final boolean ENABLE_TESTS = true;
     private ListView listView;
     private Handler handler = new Handler();
-    static {
-        System.loadLibrary("native-lib");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
