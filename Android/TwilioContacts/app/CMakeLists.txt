@@ -19,15 +19,24 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              src/main/cpp/native-lib.cpp )
 
-add_library( # Sets the name of the library.
-             contact-lib
-
-             # Sets the library as a shared library.
+# Contact library
+# Navigate to core cpp library, make all and then copy the output (base-contact-sdk.so) into src/cpp/
+# Copy the inc folder from the cpp library located in src/inc to src/main/cpp/inc
+add_library( contact-lib
              SHARED
+             IMPORTED )
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/base-contact-sdk.cpp
-              src/main/cpp/contact-lib.cpp)
+set_target_properties( # Specifies the target library.
+                    contact-lib
+
+                    # Specifies the parameter you want to define.
+                    PROPERTIES IMPORTED_LOCATION
+
+                    # Provides the path to the library you want to import.
+                    src/cpp/base-contact-sdk.so )
+
+include_directories( src/main/cpp/inc )
+
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
