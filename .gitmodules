@@ -1,0 +1,3 @@
+[submodule "Twillio-Contacts-Core-Lib"]
+	path = Twillio-Contacts-Core-Lib
+	url = https://github.com/zackm0571/Twillio-Contacts-Core-Lib
