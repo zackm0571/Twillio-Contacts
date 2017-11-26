@@ -11,7 +11,7 @@ import com.zackmatthews.twiliocontacts.manager.ContactSdk;
 import com.zackmatthews.twiliocontacts.models.Contact;
 /* Sample app, executes tests by default *
  * set ENABLE_TESTS to false to disable tests */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
     private static final boolean ENABLE_TESTS = true;
     private ListView listView;
     private Handler handler = new Handler();
