@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.zackmatthews.twiliocontacts.adapters.ContactListAdapater;
 import com.zackmatthews.twiliocontacts.manager.ContactSdk;
 import com.zackmatthews.twiliocontacts.models.Contact;
-/* Sample app, executes tests by default*
+/* Sample app, executes tests by default *
  * set ENABLE_TESTS to false to disable tests */
 public class MainActivity extends Activity {
     private static final boolean ENABLE_TESTS = true;
@@ -34,18 +34,6 @@ public class MainActivity extends Activity {
     }
 
     /*** TESTS ***/
-    private void startCountDownMessage(final String msg, final long time){
-        Runnable countDown = new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, msg + " " + String.valueOf(time / 1000), Toast.LENGTH_SHORT).show();
-                if(time > 0) {
-                    startCountDownMessage(msg, time - 1000);
-                }
-            }
-        };
-        handler.postDelayed(countDown, Toast.LENGTH_SHORT);
-    }
     private void addContactTest(){
         handler.postDelayed(new Runnable() {
             @Override
@@ -55,8 +43,9 @@ public class MainActivity extends Activity {
                 contact.lastName= "Bueller";
                 contact.phoneNumber = "+13774146999";
                 ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
+                Toast.makeText(MainActivity.this, "Contact 'Ferris Bueller' added", Toast.LENGTH_SHORT).show();
             }
-        }, 4500);
+        }, 3000);
     }
 
     private void updateContactTest(){
@@ -69,6 +58,7 @@ public class MainActivity extends Activity {
                 newContact.lastName= "Max";
                 newContact.phoneNumber = "+13441888999";
                 ContactSdk.getInstance().updateContact(contact, newContact, (ContactListAdapater)listView.getAdapter());
+                Toast.makeText(MainActivity.this, "Contact at index 0 updated to 'Mad max'", Toast.LENGTH_SHORT).show();
             }
         }, 3000);
     }
