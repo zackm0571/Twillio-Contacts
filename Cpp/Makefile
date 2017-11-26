@@ -1,6 +1,6 @@
 OBJECT_FILES=main.o base-contact-sdk.o
 CC=g++
-TARGET=base-contact-sdk.so
+TARGET=base-contact-sdk
 
 INC_PATH = -I src/inc 
 LIB_PATH = -L lib/
