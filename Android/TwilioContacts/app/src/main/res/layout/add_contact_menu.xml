@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/add_Contact_tv_firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:inputType="textPersonName"
+        android:hint="@string/first_name_hint"/>
+    <EditText
+        android:id="@+id/add_Contact_tv_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:inputType="textPersonName"
+        android:hint="@string/last_name_hint"/>
+    <EditText
+        android:id="@+id/add_Contact_tv_phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:inputType="phone"
+        android:hint="@string/phone_number_hint"/>
+</LinearLayout>
