@@ -6,5 +6,5 @@ git submodule update --init --recursive
 cd Twillio-Contacts-Core-Lib
 make all
 cd ..
-cp Twillio-Contacts-Core-Lib/base-contact-sdk.so $ANDROID_LIB_DIR/libcontact-lib.so
+cp Twillio-Contacts-Core-Lib/base-contact-sdk.so $ANDROID_LIB_DIR/.
 cp -r Twillio-Contacts-Core-Lib/src/inc $ANDROID_LIB_DIR/.
