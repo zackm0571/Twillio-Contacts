@@ -5,3 +5,7 @@ Instructions:
 	Apps require linking of base-contact-sdk.cpp, base-contact-sdk.h and the inc folder (Will integrate .so later on)
 	Run install.sh after modification of core lib to copy generated files 
 	To build core lib cd into the directory and run 'make all'
+
+Future additions:
+	Add shared library output for core cpp
+	Add shared cpp as a submodule
