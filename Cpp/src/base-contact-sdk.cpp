@@ -51,6 +51,20 @@ extern "C" {
 		return contactsData;
 	}
 
+	 bool containsContact(Contact contact){
+                Contact index;
+                 for(int i = 0; i < contactsData.size(); i++){
+                        index = contactsData.at(i);
+                        bool isContact = (contact.firstName == index.firstName)
+                                  && (contact.lastName == index.lastName)
+                                  && (contact.phoneNumber == index.phoneNumber);
+                        if(isContact){
+                                return true;
+                        }
+                }
+                return false;
+        }
+
 	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
 		Contact index;
 		for(int i = 0; i < contactsData.size(); i++){
@@ -66,7 +80,10 @@ extern "C" {
 		return false;
 	}
 	bool BaseContactSdk::addContact(Contact contact){
-		contactsData.push_back(contact);
-		return true;
+		if(!containsContact(contact)){
+			contactsData.push_back(contact);
+			return true;
+		}
+		return false;
 	}
 }

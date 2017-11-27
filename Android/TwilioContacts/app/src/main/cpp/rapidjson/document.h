@@ -2389,10 +2389,7 @@ public:
     //! Get the capacity of stack in bytes.
     size_t GetStackCapacity() const { return stack_.GetCapacity(); }
 
-//! Prohibit assignment
-GenericDocument& operator=(const GenericDocument&);
-
-    private:
+private:
     // clear stack on any exit from ParseStream, e.g. due to exception
     struct ClearStackOnExit {
         explicit ClearStackOnExit(GenericDocument& d) : d_(d) {}
@@ -2454,8 +2451,10 @@ public:
 private:
     //! Prohibit copying
     GenericDocument(const GenericDocument&);
+    //! Prohibit assignment
+    GenericDocument& operator=(const GenericDocument&);
 
-        void ClearStack() {
+    void ClearStack() {
         if (Allocator::kNeedFree)
             while (stack_.GetSize() > 0)    // Here assumes all elements in stack array are GenericValue (Member is actually 2 GenericValue objects)
                 (stack_.template Pop<ValueType>(1))->~ValueType();
