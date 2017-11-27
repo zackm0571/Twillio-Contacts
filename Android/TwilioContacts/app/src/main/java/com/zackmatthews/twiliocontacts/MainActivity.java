@@ -132,8 +132,9 @@ public class MainActivity extends Activity{
                 contact.firstName = "Ferris";
                 contact.lastName= "Bueller";
                 contact.phoneNumber = "+13774146999";
-                ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
-                Toast.makeText(MainActivity.this, "Contact 'Ferris Bueller' added", Toast.LENGTH_SHORT).show();
+                boolean isSuccessful = ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
+                String outputText = (isSuccessful) ? "Contact 'Ferris Bueller' added" : "Cannot add contact, contact already exists";
+                Toast.makeText(MainActivity.this, outputText, Toast.LENGTH_SHORT).show();
             }
         }, 3000);
     }
