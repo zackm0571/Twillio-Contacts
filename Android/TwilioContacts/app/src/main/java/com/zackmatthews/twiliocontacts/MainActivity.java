@@ -3,6 +3,7 @@ package com.zackmatthews.twiliocontacts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -16,11 +17,17 @@ import android.widget.Toast;
 import com.zackmatthews.twiliocontacts.adapters.ContactListAdapater;
 import com.zackmatthews.twiliocontacts.manager.ContactSdk;
 import com.zackmatthews.twiliocontacts.models.Contact;
+
+import java.util.Locale;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /* Sample app, executes tests by default *
  * set ENABLE_TESTS to false to disable tests */
 public class MainActivity extends Activity{
     /** Constants **/
     private static final boolean ENABLE_TESTS = true;
+    private static final boolean ENABLE_RANDOM_UPDATES_FOR_EXTRA_CREDIT = true;
 
     /** UI **/
     private ListView listView;
@@ -42,8 +49,32 @@ public class MainActivity extends Activity{
         initUI();
 
         if(ENABLE_TESTS) {
-            addContactTest();
-            updateContactTest();
+            final long delayMills = 3500;
+            addContactTest(new Contact("Ferris", "Bueller", "+17279991555"), delayMills);
+            updateContactTest(new Contact("Mad", "Max", "+17278881255"),0, delayMills);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if(ENABLE_RANDOM_UPDATES_FOR_EXTRA_CREDIT){
+                        for(int i = 1; i < ContactSdk.getInstance().getContacts().size(); i++){
+                            long sleepTime;
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                sleepTime = ThreadLocalRandom.current().nextLong(1000, 6000);
+                            } else {
+                                sleepTime = Math.max(new Random(System.currentTimeMillis()).nextLong(), 5000) + 1000;
+                            }
+
+                            try {
+                                Thread.sleep(sleepTime);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            updateContactTest(new Contact("Magic", "Mike", "+17276123111"), i, 1000);
+                        }
+                    }
+                }
+            }).start();
         }
     }
 
@@ -124,33 +155,34 @@ public class MainActivity extends Activity{
     }
 
     /*** TESTS ***/
-    private void addContactTest(){
+    private void addContactTest(final Contact contact, long delayMills){
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Contact contact = new Contact();
-                contact.firstName = "Ferris";
-                contact.lastName= "Bueller";
-                contact.phoneNumber = "+13774146999";
                 boolean isSuccessful = ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
-                String outputText = (isSuccessful) ? "Contact 'Ferris Bueller' added" : "Cannot add contact, contact already exists";
+
+                String outputText = (isSuccessful) ?
+                        String.format(Locale.getDefault(),"Contact '%s %s' added",
+                                contact.firstName, contact.lastName)
+                        : "Cannot add contact, contact already exists";
+
                 Toast.makeText(MainActivity.this, outputText, Toast.LENGTH_SHORT).show();
             }
-        }, 3000);
+        }, delayMills);
     }
 
-    private void updateContactTest(){
+    private void updateContactTest(final Contact newContact, final int contactIndex, long delaysMills){
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Contact contact = ContactSdk.getInstance().getContacts().get(0);
-                Contact newContact = new Contact();
-                newContact.firstName = "Mad";
-                newContact.lastName= "Max";
-                newContact.phoneNumber = "+13441888999";
+                Contact contact = ContactSdk.getInstance().getContacts().get(contactIndex);
                 ContactSdk.getInstance().updateContact(contact, newContact, (ContactListAdapater)listView.getAdapter());
-                Toast.makeText(MainActivity.this, "Contact at index 0 updated to 'Mad max'", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this,
+                        String.format(Locale.getDefault(),
+                                "Contact at index %d updated to '%s %s'",
+                                contactIndex, newContact.firstName, newContact.lastName), Toast.LENGTH_SHORT).show();
             }
-        }, 3000);
+        }, delaysMills);
     }
 }
