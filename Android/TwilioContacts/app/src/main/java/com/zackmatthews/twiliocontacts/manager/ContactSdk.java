@@ -28,7 +28,6 @@ public class ContactSdk{
 	public interface ContactListener{
 		void onContactAdded(Contact contact);
 		void onContactUpdated(Contact oldContact, Contact newContact);
-		void onContactListRefreshed();
 	}
 
 	private static ContactSdk instance;

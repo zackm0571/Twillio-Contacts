@@ -47,11 +47,6 @@ public class ContactListAdapater extends BaseAdapter implements ContactSdk.Conta
         notifyDataSetChanged();
     }
 
-    @Override
-    public void onContactListRefreshed() {
-
-    }
-
     static class ViewHolder{
         TextView lastName, firstName, phoneNumber;
     }
