@@ -20,18 +20,6 @@ import com.zackmatthews.twiliocontacts.models.Contact;
 /* Sample app, executes tests by default *
  * set ENABLE_TESTS to false to disable tests */
 public class MainActivity extends Activity{
-    /** UI **/
-    private ListView listView;
-    public ListView getListView() {
-        return listView;
-    }
-
-    private FloatingActionButton fab;
-    private AlertDialog addContactDialog;
-    private View addContactView;
-
-    /** Misc **/
-    private Handler handler = new Handler();
     static {
         System.loadLibrary("native-lib");
     }
@@ -40,7 +28,6 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initUI();
     }
 
@@ -68,50 +55,9 @@ public class MainActivity extends Activity{
             }
         }
         addContactDialog = new AlertDialog.Builder(MainActivity.this).setMessage("Add contact")
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(addContactView == null) return;
-                        EditText et_firstName = addContactView.findViewById(R.id.add_Contact_tv_firstName);
-                        EditText et_lastName = addContactView.findViewById(R.id.add_Contact_tv_lastName);
-                        EditText et_phoneNumber = addContactView.findViewById(R.id.add_Contact_tv_phoneNumber);
-
-                        String firstName = et_firstName.getText().toString();
-                        String lastName = et_lastName.getText().toString();
-                        String phoneNumber = et_phoneNumber.getText().toString();
-
-                        boolean isValid =
-                                (firstName.replace(" ", "").length() > 0 )
-                                        && (lastName.replace(" ", "").length() > 0 )
-                                        && (phoneNumber.replace(" ", "").length() > 0 );
-
-                        if(isValid) {
-                            Contact contact = new Contact(firstName, lastName, phoneNumber);
-                            ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
-                        }
-                        else{
-                            Toast.makeText(MainActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        EditText et_firstName = addContactView.findViewById(R.id.add_Contact_tv_firstName);
-                        EditText et_lastName = addContactView.findViewById(R.id.add_Contact_tv_lastName);
-                        EditText et_phoneNumber = addContactView.findViewById(R.id.add_Contact_tv_phoneNumber);
-
-                        et_firstName.setText("");
-                        et_lastName.setText("");
-                        et_phoneNumber.setText("");
-                    }
-                })
+                .setPositiveButton("Add", confirmAddContactListener)
+                .setNegativeButton("Cancel", onCancelAddContactListener)
+                .setOnDismissListener(onDismissListener)
                 .setView(addContactView).create();
 
         if(addContactView.getParent()!=null)
@@ -119,4 +65,61 @@ public class MainActivity extends Activity{
 
         addContactDialog.show();
     }
+
+    /** UI **/
+    private ListView listView;
+    public ListView getListView() {
+        return listView;
+    }
+
+    private FloatingActionButton fab;
+    private AlertDialog addContactDialog;
+    private View addContactView;
+    private DialogInterface.OnClickListener confirmAddContactListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            if(addContactView == null) return;
+            EditText et_firstName = addContactView.findViewById(R.id.add_Contact_tv_firstName);
+            EditText et_lastName = addContactView.findViewById(R.id.add_Contact_tv_lastName);
+            EditText et_phoneNumber = addContactView.findViewById(R.id.add_Contact_tv_phoneNumber);
+
+            String firstName = et_firstName.getText().toString();
+            String lastName = et_lastName.getText().toString();
+            String phoneNumber = et_phoneNumber.getText().toString();
+
+            boolean isValid =
+                    (firstName.replace(" ", "").length() > 0 )
+                            && (lastName.replace(" ", "").length() > 0 )
+                            && (phoneNumber.replace(" ", "").length() > 0 );
+
+            if(isValid) {
+                Contact contact = new Contact(firstName, lastName, phoneNumber);
+                ContactSdk.getInstance().addContact(contact, (ContactListAdapater)listView.getAdapter());
+            }
+            else{
+                Toast.makeText(MainActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    private DialogInterface.OnClickListener onCancelAddContactListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+        }
+    };
+    private DialogInterface.OnDismissListener onDismissListener = new DialogInterface.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialogInterface) {
+            EditText et_firstName = addContactView.findViewById(R.id.add_Contact_tv_firstName);
+            EditText et_lastName = addContactView.findViewById(R.id.add_Contact_tv_lastName);
+            EditText et_phoneNumber = addContactView.findViewById(R.id.add_Contact_tv_phoneNumber);
+
+            et_firstName.setText("");
+            et_lastName.setText("");
+            et_phoneNumber.setText("");
+        }
+    };
+
+    /** Misc **/
+    private Handler handler = new Handler();
 }
