@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "base-contact-sdk.h"
+#import "TWContact.h"
 @protocol ContactListener<NSObject>
 -(void)onAddContact;
--(void)onContactUpdated:(Contact) oldContact :(Contact) newContact;
--(void)onContactsRefreshed;
+-(void)onContactUpdated:(TWContact*) oldContact :(TWContact*) newContact;
 @end
 
 @interface ContactSdk : NSObject
 @property id<ContactListener> listener;
--(void)addContact:(Contact)contact;
--(BOOL)updateContact:(Contact)oldContact : (Contact)newContact;
--(vector<Contact>)getContacts;
+-(void)addContact:(TWContact*)contact;
+-(BOOL)updateContact:(TWContact*)oldContact : (TWContact*)newContact;
+-(NSArray*)getContacts;
 +(ContactSdk*)getInstance;
 @end

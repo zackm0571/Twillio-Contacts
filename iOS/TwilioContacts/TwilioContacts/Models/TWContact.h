@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface TWContact : NSObject
 @property NSString *firstName;
 @property NSString *lastName;

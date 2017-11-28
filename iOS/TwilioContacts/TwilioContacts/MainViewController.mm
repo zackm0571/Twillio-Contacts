@@ -30,10 +30,10 @@
 -(void)testAddContact{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         sleep(3);
-        Contact contact;
-        contact.firstName = "Robert";
-        contact.lastName = "Paulson";
-        contact.phoneNumber = "+18005555555";
+        TWContact *contact = [[TWContact alloc] init];
+        contact.firstName = @"Robert";
+        contact.lastName = @"Paulson";
+        contact.phoneNumber = @"+18005555555";
         [[ContactSdk getInstance] addContact:contact];
     });
 }
@@ -41,11 +41,11 @@
 -(void)testUpdateContact{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         sleep(3);
-        Contact contact = [[ContactSdk getInstance] getContacts].at(0);
-        Contact newContact;
-        newContact.firstName = "Magic";
-        newContact.lastName = "Mike";
-        newContact.phoneNumber = "+17277777777";
+        TWContact *contact = [[[ContactSdk getInstance] getContacts] objectAtIndex:0];
+        TWContact *newContact = [[TWContact alloc] init];
+        newContact.firstName = @"Magic";
+        newContact.lastName = @"Mike";
+        newContact.phoneNumber = @"+17277777777";
         [[ContactSdk getInstance] updateContact:contact :newContact];
     });
 }
@@ -62,22 +62,18 @@
         cell = [[UIContactCellTableViewCell alloc] initWithIdentifier:editableCellIdentifier];
     }
     
-    int row = indexPath.row;
-    Contact contact =  [[ContactSdk getInstance] getContacts].at(row);
-    NSString *firstName = [[NSString alloc] initWithUTF8String:contact.firstName.c_str()];
-    NSString *lastName = [[NSString alloc] initWithUTF8String:contact.lastName.c_str()];
-    NSString *phoneNumber = [[NSString alloc] initWithUTF8String:contact.phoneNumber.c_str()];
-    [cell.firstNameLabel setText:firstName];
-    [cell.lastNameLabel setText:lastName];
-    [cell.phoneNumberLabel setText:phoneNumber];
+    TWContact *contact =  [[[ContactSdk getInstance] getContacts] objectAtIndex:indexPath.row];
+    [cell.firstNameLabel setText:contact.firstName];
+    [cell.lastNameLabel setText:contact.lastName];
+    [cell.phoneNumberLabel setText:contact.phoneNumber];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [[ContactSdk getInstance] getContacts].size();
+    return [[[ContactSdk getInstance] getContacts] count];
 }
--(void)onContactUpdated:(Contact)oldContact :(Contact)newContact{
+-(void)onContactUpdated:(TWContact*)oldContact :(TWContact*)newContact{
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });

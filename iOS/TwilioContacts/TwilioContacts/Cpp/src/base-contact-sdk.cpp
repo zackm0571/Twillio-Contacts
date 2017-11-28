@@ -1,72 +1,85 @@
 #include <base-contact-sdk.h>
-#include "inc/rapidjson/document.h"
-#include "inc/rapidjson/writer.h"
-#include "inc/rapidjson/stringbuffer.h"
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
 #include <iostream>
 using namespace rapidjson;
 
 
-	vector<Contact> contactsData;
-	std::string contacts_json = "[{\"first\" : \"Alexander\",\"last\" : \"Bell\",\"phone\" : \"+16170000001\"},"
-                                                "{\"first\" : \"Thomas\",\"last\" : \"Watson\",\"phone\" : \"+16170000002\"},"
-                                                "{\"first\" : \"Elisha\",\"last\" : \"Gray\",\"phone\" : \"+18476003599\"},"
-                                                "{\"first\" : \"Antonio\",\"last\" : \"Meucci\",\"phone\" : \"+17188763245\"},"
-                                                "{\"first\" : \"Guglielmo\",\"last\" : \"Marconi\",\"phone\" : \"+39051203222\"},"
-                                                "{\"first\" : \"Samuel\",\"last\" : \"Morse\",\"phone\" : \"+16172419876\"},"
-                                                "{\"first\" : \"Tim\",\"last\" : \"Berners-Lee\",\"phone\" : \"+44204549898\"},"
-                                                "{\"first\" : \"John\",\"last\" : \"Baird\",\"phone\" : \"+4408458591006\"},"
-                                                "{\"first\" : \"Thomas\",\"last\" : \"Edison\",\"phone\" : \"+19086575678\"}]";
+set<Contact> contactsData;
+std::string contacts_json = "[{\"first\" : \"Alexander\",\"last\" : \"Bell\",\"phone\" : \"+16170000001\"},"
+                                            "{\"first\" : \"Thomas\",\"last\" : \"Watson\",\"phone\" : \"+16170000002\"},"
+                                            "{\"first\" : \"Elisha\",\"last\" : \"Gray\",\"phone\" : \"+18476003599\"},"
+                                            "{\"first\" : \"Antonio\",\"last\" : \"Meucci\",\"phone\" : \"+17188763245\"},"
+                                            "{\"first\" : \"Guglielmo\",\"last\" : \"Marconi\",\"phone\" : \"+39051203222\"},"
+                                            "{\"first\" : \"Samuel\",\"last\" : \"Morse\",\"phone\" : \"+16172419876\"},"
+                                            "{\"first\" : \"Tim\",\"last\" : \"Berners-Lee\",\"phone\" : \"+44204549898\"},"
+                                            "{\"first\" : \"John\",\"last\" : \"Baird\",\"phone\" : \"+4408458591006\"},"
+                                            "{\"first\" : \"Thomas\",\"last\" : \"Edison\",\"phone\" : \"+19086575678\"}]";
 
-	vector<Contact> parseContacts(){
-		vector<Contact> contacts;  
-		Document d;
-    		d.Parse(contacts_json.c_str());
 
-		for (Value::ConstValueIterator itr = d.Begin(); itr != d.End(); ++itr){
-			Contact contact;
-		 	if(itr->GetObject().HasMember("first")){
-				contact.firstName = itr->GetObject().FindMember("first")->value.GetString();
-			}
-			
+bool Contact::operator< (const Contact &right) const
+{
+    std::string comp = right.firstName + right.lastName + right.phoneNumber;
+    std::string selfComp = this->firstName + this->lastName + this->phoneNumber;
+    int val = selfComp.compare(comp);
+        return (val < 0) ? true : false;
+}
+set<Contact> parseContacts(){
+    set<Contact> contacts;
+    Document d;
+        d.Parse(contacts_json.c_str());
 
-		 	if(itr->GetObject().HasMember("last")){
-				contact.lastName = itr->GetObject().FindMember("last")->value.GetString();
-			}
-		
+    for (Value::ConstValueIterator itr = d.Begin(); itr != d.End(); ++itr){
+        Contact contact;
+        if(itr->GetObject().HasMember("first")){
+            contact.firstName = itr->GetObject().FindMember("first")->value.GetString();
+        }
+        
 
-		 	if(itr->GetObject().HasMember("phone")){
-				contact.phoneNumber = itr->GetObject().FindMember("phone")->value.GetString();
-			}
-	
-			contacts.push_back(contact);
-		}
-		return contacts;
-	}
+        if(itr->GetObject().HasMember("last")){
+            contact.lastName = itr->GetObject().FindMember("last")->value.GetString();
+        }
+    
 
-	vector<Contact> BaseContactSdk::getContacts(){
-		if(contactsData.size() == 0){
-			contactsData = parseContacts();
-		}
+        if(itr->GetObject().HasMember("phone")){
+            contact.phoneNumber = itr->GetObject().FindMember("phone")->value.GetString();
+        }
 
-		return contactsData;
-	}
+        contacts.insert(contact);
+    }
+    return contacts;
+}
 
-	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
-		Contact index;
-		for(int i = 0; i < contactsData.size(); i++){
-			index = contactsData.at(i);
-			bool isContact = (oldContact.firstName == index.firstName) 
-					&& (oldContact.lastName == index.lastName)
-					&& (oldContact.phoneNumber == index.phoneNumber);
-			if(isContact){
-				contactsData.at(i) = newContact;
-				return true;
-			}
-		}	
-		return false;
-	}
-	bool BaseContactSdk::addContact(Contact contact){
-		contactsData.push_back(contact);
-		return true;
-	}
+set<Contact> BaseContactSdk::getContacts(){
+    if(contactsData.size() == 0){
+        contactsData = parseContacts();
+    }
+
+    return contactsData;
+}
+
+ bool containsContact(Contact contact){
+    if(contactsData.find(contact) != contactsData.end()){
+        return true;
+    }
+            return false;
+    }
+
+bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
+    if(containsContact(oldContact) && !containsContact(newContact)){
+        std::set<Contact>::iterator itr = contactsData.find(oldContact);
+        contactsData.erase(itr);
+        contactsData.insert(newContact);
+        return true;
+    }
+    return false;
+}
+bool BaseContactSdk::addContact(Contact contact){
+    if(!containsContact(contact)){
+        contactsData.insert(contact);
+        return true;
+    }
+    return false;
+}
 

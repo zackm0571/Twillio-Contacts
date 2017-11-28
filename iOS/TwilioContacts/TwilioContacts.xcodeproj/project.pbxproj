@@ -14,7 +14,7 @@
 		5E62F2B31FC5D84A001E719F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2B21FC5D84A001E719F /* main.m */; };
 		5E62F2BE1FC5DB20001E719F /* UIContactCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2BC1FC5DB20001E719F /* UIContactCellTableViewCell.m */; };
 		5E62F2BF1FC5DB20001E719F /* UIContactCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2BD1FC5DB20001E719F /* UIContactCellTableViewCell.xib */; };
-		5E62F2C21FC5DB38001E719F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2C11FC5DB38001E719F /* Contact.m */; };
+		5E62F2C21FC5DB38001E719F /* TWContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2C11FC5DB38001E719F /* TWContact.m */; };
 		5E62F2CB1FC5E399001E719F /* ContactSdk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CA1FC5E399001E719F /* ContactSdk.mm */; };
 		5E62F2D01FC5E7B5001E719F /* base-contact-sdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */; };
 		5E62F2D11FC5E7B5001E719F /* inc in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CF1FC5E7B5001E719F /* inc */; };
@@ -35,8 +35,8 @@
 		5E62F2BB1FC5DB20001E719F /* UIContactCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIContactCellTableViewCell.h; sourceTree = "<group>"; };
 		5E62F2BC1FC5DB20001E719F /* UIContactCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIContactCellTableViewCell.m; sourceTree = "<group>"; };
 		5E62F2BD1FC5DB20001E719F /* UIContactCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIContactCellTableViewCell.xib; sourceTree = "<group>"; };
-		5E62F2C01FC5DB38001E719F /* Contact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
-		5E62F2C11FC5DB38001E719F /* Contact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		5E62F2C01FC5DB38001E719F /* TWContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWContact.h; sourceTree = "<group>"; };
+		5E62F2C11FC5DB38001E719F /* TWContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWContact.m; sourceTree = "<group>"; };
 		5E62F2C41FC5DF10001E719F /* ContactSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSdk.h; sourceTree = "<group>"; };
 		5E62F2CA1FC5E399001E719F /* ContactSdk.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactSdk.mm; sourceTree = "<group>"; };
 		5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "base-contact-sdk.cpp"; path = "TwilioContacts/Cpp/src/base-contact-sdk.cpp"; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		5E62F2B91FC5DAAA001E719F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5E62F2C01FC5DB38001E719F /* Contact.h */,
-				5E62F2C11FC5DB38001E719F /* Contact.m */,
+				5E62F2C01FC5DB38001E719F /* TWContact.h */,
+				5E62F2C11FC5DB38001E719F /* TWContact.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 				5E62F2D11FC5E7B5001E719F /* inc in Sources */,
 				5E62F2BE1FC5DB20001E719F /* UIContactCellTableViewCell.m in Sources */,
 				5E62F2CB1FC5E399001E719F /* ContactSdk.mm in Sources */,
-				5E62F2C21FC5DB38001E719F /* Contact.m in Sources */,
+				5E62F2C21FC5DB38001E719F /* TWContact.m in Sources */,
 				5E62F2B31FC5D84A001E719F /* main.m in Sources */,
 				5E62F2A51FC5D84A001E719F /* AppDelegate.m in Sources */,
 			);

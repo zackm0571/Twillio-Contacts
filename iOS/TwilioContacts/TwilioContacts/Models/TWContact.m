@@ -6,7 +6,7 @@
 //  Copyright © 2017 zackmatthews. All rights reserved.
 //
 
-#import "Contact.h"
+#import "TWContact.h"
 
 @implementation TWContact
 @end
