@@ -95,7 +95,7 @@ public class ContactSDKTests {
             }
 
             Contact contact = ContactSdk.getInstance().getContacts().get(i);
-            Contact newContact = new Contact("Matt", "Damon", "+17047766551");
+            Contact newContact = new Contact(contact.firstName, contact.lastName + "-von-winger-flabber", contact.phoneNumber);
             boolean isSuccessful = ContactSdk.getInstance().updateContact(contact, newContact, (ContactListAdapater)mActivityRule.getActivity().getListView().getAdapter());
 
             final String outputText = (isSuccessful) ?
