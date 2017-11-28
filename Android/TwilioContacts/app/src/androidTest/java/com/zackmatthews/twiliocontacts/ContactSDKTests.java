@@ -54,6 +54,28 @@ public class ContactSDKTests {
     }
 
     @Test
+    public void addContactWithNullValues(){
+        Contact contact = new Contact(null, null, null);
+        boolean isSuccessful = ContactSdk.getInstance().addContact(contact, (ContactListAdapater)mActivityRule.getActivity().getListView().getAdapter());
+
+        final String outputText = (isSuccessful) ?
+                String.format(Locale.getDefault(),"Contact '%s %s' added",
+                        contact.firstName, contact.lastName)
+                : "Cannot add contact, contact already exists";
+        mActivityRule.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(mActivityRule.getActivity(), outputText, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
     public void updateContact(){
         int index = 0;
         Contact contact = ContactSdk.getInstance().getContacts().get(index);
