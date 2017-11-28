@@ -3,7 +3,7 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 #include <iostream>
-#include <vector>
+#include <set>
 using namespace rapidjson;
 using namespace std;
 int main(){
@@ -24,14 +24,13 @@ int main(){
     // Output {"project":"rapidjson","stars":11}
     std::cout << buffer.GetString() << std::endl;
 	BaseContactSdk *sdk = new BaseContactSdk();
-	vector<Contact> contacts = sdk->getContacts();
+	set<Contact> contacts = sdk->getContacts();
 
-	for(int i = 0; i < contacts.size(); i++){
-		std::cout << contacts.at(i).firstName << std::endl;
-		std::cout << contacts.at(i).lastName << std::endl;
-		std::cout << contacts.at(i).phoneNumber << std::endl;
+	for (std::set<Contact>::iterator it=contacts.begin(); it!=contacts.end(); ++it){
+	    	std::cout << it->firstName;
+  		std::cout << '\n';
 
-		
 	}
+  	std::cout << '\n';
 	return 0;
 }

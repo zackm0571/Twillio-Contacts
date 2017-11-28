@@ -6,7 +6,7 @@
 using namespace rapidjson;
 
 extern "C" {
-	vector<Contact> contactsData;
+	set<Contact> contactsData;
 	std::string contacts_json = "[{\"first\" : \"Alexander\",\"last\" : \"Bell\",\"phone\" : \"+16170000001\"},"
                                                 "{\"first\" : \"Thomas\",\"last\" : \"Watson\",\"phone\" : \"+16170000002\"},"
                                                 "{\"first\" : \"Elisha\",\"last\" : \"Gray\",\"phone\" : \"+18476003599\"},"
@@ -16,9 +16,17 @@ extern "C" {
                                                 "{\"first\" : \"Tim\",\"last\" : \"Berners-Lee\",\"phone\" : \"+44204549898\"},"
                                                 "{\"first\" : \"John\",\"last\" : \"Baird\",\"phone\" : \"+4408458591006\"},"
                                                 "{\"first\" : \"Thomas\",\"last\" : \"Edison\",\"phone\" : \"+19086575678\"}]";
+	
 
-	vector<Contact> parseContacts(){
-		vector<Contact> contacts;  
+	bool Contact::operator< (const Contact &right) const
+	{
+		std::string comp = right.firstName + right.lastName + right.phoneNumber;
+		std::string selfComp = this->firstName + this->lastName + this->phoneNumber;
+		int val = selfComp.compare(comp);
+    		return (val < 0) ? true : false;
+	}
+	set<Contact> parseContacts(){
+		set<Contact> contacts;  
 		Document d;
     		d.Parse(contacts_json.c_str());
 
@@ -38,12 +46,12 @@ extern "C" {
 				contact.phoneNumber = itr->GetObject().FindMember("phone")->value.GetString();
 			}
 	
-			contacts.push_back(contact);
+			contacts.insert(contact);
 		}
 		return contacts;
 	}
 
-	vector<Contact> BaseContactSdk::getContacts(){
+	set<Contact> BaseContactSdk::getContacts(){
 		if(contactsData.size() == 0){
 			contactsData = parseContacts();
 		}
@@ -52,36 +60,24 @@ extern "C" {
 	}
 
 	 bool containsContact(Contact contact){
-                Contact index;
-                 for(int i = 0; i < contactsData.size(); i++){
-                        index = contactsData.at(i);
-                        bool isContact = (contact.firstName == index.firstName)
-                                  && (contact.lastName == index.lastName)
-                                  && (contact.phoneNumber == index.phoneNumber);
-                        if(isContact){
-                                return true;
-                        }
-                }
+		if(contactsData.find(contact) != contactsData.end()){
+			return true;
+		}
                 return false;
         }
 
 	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
-		Contact index;
-		for(int i = 0; i < contactsData.size(); i++){
-			index = contactsData.at(i);
-			bool isContact = (oldContact.firstName == index.firstName) 
-					&& (oldContact.lastName == index.lastName)
-					&& (oldContact.phoneNumber == index.phoneNumber);
-			if(isContact){
-				contactsData.at(i) = newContact;
-				return true;
-			}
-		}	
+		if(containsContact(oldContact)){
+			std::set<Contact>::iterator itr = contactsData.find(oldContact);
+			contactsData.erase(itr);
+			contactsData.insert(newContact);
+			return true;
+		}
 		return false;
 	}
 	bool BaseContactSdk::addContact(Contact contact){
 		if(!containsContact(contact)){
-			contactsData.push_back(contact);
+			contactsData.insert(contact);
 			return true;
 		}
 		return false;
