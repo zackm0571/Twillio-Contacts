@@ -29,6 +29,10 @@ public class MainActivity extends Activity{
     private static final boolean ENABLE_TESTS = true;
     private static final boolean ENABLE_RANDOM_UPDATES_FOR_EXTRA_CREDIT = true;
 
+    public ListView getListView() {
+        return listView;
+    }
+
     /** UI **/
     private ListView listView;
     private FloatingActionButton fab;

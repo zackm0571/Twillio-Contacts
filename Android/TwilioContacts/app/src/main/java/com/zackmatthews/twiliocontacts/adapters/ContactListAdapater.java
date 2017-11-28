@@ -1,5 +1,6 @@
 package com.zackmatthews.twiliocontacts.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,12 +40,23 @@ public class ContactListAdapater extends BaseAdapter implements ContactSdk.Conta
 
     @Override
     public void onContactAdded(Contact contact) {
-        notifyDataSetChanged();
+        ((Activity)ctx).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                notifyDataSetChanged();
+            }
+        });
+
     }
 
     @Override
     public void onContactUpdated(Contact oldContact, Contact newContact) {
-        notifyDataSetChanged();
+        ((Activity)ctx).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                notifyDataSetChanged();
+            }
+        });
     }
 
     static class ViewHolder{
