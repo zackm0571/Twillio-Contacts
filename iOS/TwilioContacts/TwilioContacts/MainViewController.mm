@@ -23,31 +23,6 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[ContactSdk getInstance] setListener:self];
-    [self testAddContact];
-    [self testUpdateContact];
-}
-
--(void)testAddContact{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        sleep(3);
-        TWContact *contact = [[TWContact alloc] init];
-        contact.firstName = @"Robert";
-        contact.lastName = @"Paulson";
-        contact.phoneNumber = @"+18005555555";
-        [[ContactSdk getInstance] addContact:contact];
-    });
-}
-
--(void)testUpdateContact{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        sleep(3);
-        TWContact *contact = [[[ContactSdk getInstance] getContacts] objectAtIndex:0];
-        TWContact *newContact = [[TWContact alloc] init];
-        newContact.firstName = @"Magic";
-        newContact.lastName = @"Mike";
-        newContact.phoneNumber = @"+17277777777";
-        [[ContactSdk getInstance] updateContact:contact :newContact];
-    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,17 +49,9 @@
     return [[[ContactSdk getInstance] getContacts] count];
 }
 -(void)onContactUpdated:(TWContact*)oldContact :(TWContact*)newContact{
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+    [self.tableView reloadData];
 }
--(void)onContactsRefreshed{
-    
-}
--(void)onAddContact{
-    dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-    });
-    
+-(void)onAddContact:(TWContact*)contact{
+    [self.tableView reloadData];
 }
 @end

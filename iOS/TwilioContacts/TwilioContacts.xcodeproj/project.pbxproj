@@ -20,7 +20,24 @@
 		5E62F2D11FC5E7B5001E719F /* inc in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CF1FC5E7B5001E719F /* inc */; };
 		5E62F2FC1FC5EDA2001E719F /* base-contact-sdk.h in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2FB1FC5EDA2001E719F /* base-contact-sdk.h */; };
 		5E62F2FE1FC5EE37001E719F /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2FD1FC5EE37001E719F /* MainViewController.mm */; };
+		5EAF3D711FCDEF16007AE6E5 /* ContactSdk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CA1FC5E399001E719F /* ContactSdk.mm */; };
+		5EAF3D721FCDEF16007AE6E5 /* TWContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2C11FC5DB38001E719F /* TWContact.m */; };
+		5EAF3D731FCDEF39007AE6E5 /* base-contact-sdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */; };
+		5EAF3D741FCDF3A3007AE6E5 /* UIContactCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2BC1FC5DB20001E719F /* UIContactCellTableViewCell.m */; };
+		5EAF3D751FCDF3A3007AE6E5 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E62F2FD1FC5EE37001E719F /* MainViewController.mm */; };
+		5EC331641FCDE6B2008FDF1D /* TwilioContactsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC331631FCDE6B2008FDF1D /* TwilioContactsUITests.m */; };
+		5EC3316B1FCDE892008FDF1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E62F2A91FC5D84A001E719F /* Main.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5EC331661FCDE6B2008FDF1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E62F2981FC5D84A001E719F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E62F29F1FC5D84A001E719F;
+			remoteInfo = TwilioContacts;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5E62F2A01FC5D84A001E719F /* TwilioContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwilioContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,10 +60,20 @@
 		5E62F2CF1FC5E7B5001E719F /* inc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inc; path = TwilioContacts/Cpp/src/inc; sourceTree = "<group>"; };
 		5E62F2FB1FC5EDA2001E719F /* base-contact-sdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "base-contact-sdk.h"; path = "TwilioContacts/Cpp/src/inc/base-contact-sdk.h"; sourceTree = "<group>"; };
 		5E62F2FD1FC5EE37001E719F /* MainViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewController.mm; sourceTree = "<group>"; };
+		5EC331611FCDE6B2008FDF1D /* TwilioContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwilioContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EC331631FCDE6B2008FDF1D /* TwilioContactsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwilioContactsUITests.m; sourceTree = "<group>"; };
+		5EC331651FCDE6B2008FDF1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5E62F29D1FC5D84A001E719F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EC3315E1FCDE6B2008FDF1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,6 +90,7 @@
 				5E62F2CE1FC5E7B5001E719F /* base-contact-sdk.cpp */,
 				5E62F2CF1FC5E7B5001E719F /* inc */,
 				5E62F2A21FC5D84A001E719F /* TwilioContacts */,
+				5EC331621FCDE6B2008FDF1D /* TwilioContactsUITests */,
 				5E62F2A11FC5D84A001E719F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				5E62F2A01FC5D84A001E719F /* TwilioContacts.app */,
+				5EC331611FCDE6B2008FDF1D /* TwilioContactsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +159,15 @@
 			path = Cpp;
 			sourceTree = "<group>";
 		};
+		5EC331621FCDE6B2008FDF1D /* TwilioContactsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5EC331631FCDE6B2008FDF1D /* TwilioContactsUITests.m */,
+				5EC331651FCDE6B2008FDF1D /* Info.plist */,
+			);
+			path = TwilioContactsUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,6 +188,24 @@
 			productReference = 5E62F2A01FC5D84A001E719F /* TwilioContacts.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5EC331601FCDE6B2008FDF1D /* TwilioContactsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EC3316A1FCDE6B2008FDF1D /* Build configuration list for PBXNativeTarget "TwilioContactsUITests" */;
+			buildPhases = (
+				5EC3315D1FCDE6B2008FDF1D /* Sources */,
+				5EC3315E1FCDE6B2008FDF1D /* Frameworks */,
+				5EC3315F1FCDE6B2008FDF1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5EC331671FCDE6B2008FDF1D /* PBXTargetDependency */,
+			);
+			name = TwilioContactsUITests;
+			productName = TwilioContactsUITests;
+			productReference = 5EC331611FCDE6B2008FDF1D /* TwilioContactsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -162,6 +218,11 @@
 					5E62F29F1FC5D84A001E719F = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+					};
+					5EC331601FCDE6B2008FDF1D = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5E62F29F1FC5D84A001E719F;
 					};
 				};
 			};
@@ -179,6 +240,7 @@
 			projectRoot = "";
 			targets = (
 				5E62F29F1FC5D84A001E719F /* TwilioContacts */,
+				5EC331601FCDE6B2008FDF1D /* TwilioContactsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +254,14 @@
 				5E62F2B01FC5D84A001E719F /* LaunchScreen.storyboard in Resources */,
 				5E62F2AD1FC5D84A001E719F /* Assets.xcassets in Resources */,
 				5E62F2AB1FC5D84A001E719F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EC3315F1FCDE6B2008FDF1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EC3316B1FCDE892008FDF1D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +284,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5EC3315D1FCDE6B2008FDF1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EAF3D741FCDF3A3007AE6E5 /* UIContactCellTableViewCell.m in Sources */,
+				5EAF3D751FCDF3A3007AE6E5 /* MainViewController.mm in Sources */,
+				5EAF3D731FCDEF39007AE6E5 /* base-contact-sdk.cpp in Sources */,
+				5EAF3D711FCDEF16007AE6E5 /* ContactSdk.mm in Sources */,
+				5EAF3D721FCDEF16007AE6E5 /* TWContact.m in Sources */,
+				5EC331641FCDE6B2008FDF1D /* TwilioContactsUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5EC331671FCDE6B2008FDF1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E62F29F1FC5D84A001E719F /* TwilioContacts */;
+			targetProxy = 5EC331661FCDE6B2008FDF1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5E62F2A91FC5D84A001E719F /* Main.storyboard */ = {
@@ -374,6 +465,34 @@
 			};
 			name = Release;
 		};
+		5EC331681FCDE6B2008FDF1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A786WT7EUY;
+				INFOPLIST_FILE = TwilioContactsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zackmatthews.TwilioContactsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TwilioContacts;
+			};
+			name = Debug;
+		};
+		5EC331691FCDE6B2008FDF1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A786WT7EUY;
+				INFOPLIST_FILE = TwilioContactsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zackmatthews.TwilioContactsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TwilioContacts;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -391,6 +510,15 @@
 			buildConfigurations = (
 				5E62F2B71FC5D84A001E719F /* Debug */,
 				5E62F2B81FC5D84A001E719F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5EC3316A1FCDE6B2008FDF1D /* Build configuration list for PBXNativeTarget "TwilioContactsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EC331681FCDE6B2008FDF1D /* Debug */,
+				5EC331691FCDE6B2008FDF1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

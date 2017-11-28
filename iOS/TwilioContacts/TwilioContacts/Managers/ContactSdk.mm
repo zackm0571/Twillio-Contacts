@@ -7,8 +7,9 @@
 //
 
 #import "ContactSdk.h"
+#import "base-contact-sdk.h"
 @interface ContactSdk()
-@property NSArray *contacts;
+@property NSMutableArray *contacts;
 @end
 @implementation ContactSdk
 static BaseContactSdk sdk;
@@ -28,26 +29,30 @@ static ContactSdk *instance;
     [cocoaContact setPhoneNumber:[NSString stringWithUTF8String:contact.phoneNumber.c_str()]];
     return cocoaContact;
 }
--(void)addContact:(TWContact*)contact{
-    sdk.addContact([self getNativeContact:contact]);
+-(BOOL)addContact:(TWContact*)contact{
+    if(!_contacts) sdk.getContacts();
+    BOOL isSuccessful = sdk.addContact([self getNativeContact:contact]);
     if(self.listener){
-        [self.listener onAddContact];
+        [self.listener onAddContact:contact];
     }
+    return isSuccessful;
 }
 
 -(BOOL)updateContact:(TWContact*)oldContact :(TWContact*)newContact{
-    
-    sdk.updateContact([self getNativeContact:oldContact], [self getNativeContact:newContact]);
-    [self.listener onContactUpdated:oldContact :newContact ];
-    return FALSE;
+    if(!self.contacts || self.contacts.count == 0) [self getContacts];
+    BOOL isSuccessful = sdk.updateContact([self getNativeContact:oldContact], [self getNativeContact:newContact]);
+    if(self.listener){
+        [self.listener onContactUpdated:oldContact :newContact];
+    }
+    return isSuccessful;
 }
 -(NSArray*)getContacts{
-    NSMutableArray *_contacts = [[NSMutableArray alloc] init];
+    self.contacts = [[NSMutableArray alloc] init];
     set<Contact> contacts = sdk.getContacts();
     for (std::set<Contact>::iterator itr=contacts.begin(); itr!=contacts.end(); ++itr){
-        [_contacts addObject:[self getCocoaContact:(*itr)]];
+        [self.contacts addObject:[self getCocoaContact:(*itr)]];
     }
-   return [_contacts copy];
+   return [self.contacts copy];
 }
 +(ContactSdk*)getInstance{
     if(!instance){

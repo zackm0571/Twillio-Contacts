@@ -11,6 +11,5 @@
 @interface MainViewController : UIViewController<UITableViewDelegate,
                                                             UITableViewDataSource, ContactListener>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
