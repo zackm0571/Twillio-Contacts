@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <set>
 using namespace std;
 extern "C"{
 	class Contact{
@@ -7,10 +8,11 @@ extern "C"{
 		string firstName;
 		string lastName;
 		string phoneNumber; //E.164	
+		bool operator< (const Contact &right) const;
 	};
 	class BaseContactSdk{
 		public:
-		vector<Contact> getContacts();
+		set<Contact> getContacts();
 		bool addContact(Contact contact);
 		bool updateContact(Contact oldContact, Contact newContact);
 	};

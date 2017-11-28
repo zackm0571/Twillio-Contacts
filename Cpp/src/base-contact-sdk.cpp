@@ -67,7 +67,7 @@ extern "C" {
         }
 
 	bool BaseContactSdk::updateContact(Contact oldContact, Contact newContact){
-		if(containsContact(oldContact)){
+		if(containsContact(oldContact) && !containsContact(newContact)){
 			std::set<Contact>::iterator itr = contactsData.find(oldContact);
 			contactsData.erase(itr);
 			contactsData.insert(newContact);

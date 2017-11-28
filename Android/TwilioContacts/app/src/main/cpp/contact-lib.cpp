@@ -63,15 +63,15 @@ Contact javaContact2NativeContact(JNIEnv *env, jobject javaContact){
     return nativeContact;
 }
 extern "C"
-jobject vector2list(JNIEnv *env, vector<Contact> contacts) {
+jobject set2list(JNIEnv *env, set<Contact> contacts) {
     jclass java_util_ArrayList = static_cast<jclass>(env->NewGlobalRef(env->FindClass("java/util/ArrayList")));
     jmethodID java_util_ArrayList_= env->GetMethodID(java_util_ArrayList, "<init>", "(I)V");
     jmethodID java_util_ArrayList_add  = env->GetMethodID(java_util_ArrayList, "add", "(Ljava/lang/Object;)Z");
 
     jobject obj = env->NewObject(java_util_ArrayList, java_util_ArrayList_, contacts.size());
 
-    for (int n = 0; n < contacts.size(); n++) {
-        Contact contact = static_cast<Contact>(contacts[n]);
+    for (std::set<Contact>::iterator it=contacts.begin(); it!=contacts.end(); ++it){
+        Contact contact = static_cast<Contact>(*it);
         jobject javaContact = nativeContact2JavaContact(env, contact);
         env->CallBooleanMethod(obj, java_util_ArrayList_add, javaContact);
     }
@@ -96,7 +96,7 @@ Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_addContact(JNIEnv *env, 
 extern "C"
 JNIEXPORT jobject JNICALL
 Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_getContacts(JNIEnv *env, jobject instance) {
-    return vector2list(env, sdk.getContacts());
+    return set2list(env, sdk.getContacts());
 }extern "C"
 JNIEXPORT jboolean JNICALL
 Java_com_zackmatthews_twiliocontacts_manager_ContactSdk_updateContact(JNIEnv *env, jobject instance,
