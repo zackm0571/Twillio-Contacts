@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lastName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSW-YN-CaR">
-                        <rect key="frame" x="172.5" y="15" width="75" height="14.5"/>
+                        <rect key="frame" x="118" y="15" width="75" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="J4b-HO-7J6"/>
                         </constraints>
@@ -43,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO5-8N-kcS">
-                        <rect key="frame" x="302" y="-1" width="110" height="44"/>
+                        <rect key="frame" x="233" y="-1" width="110" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="6FV-8V-ABk"/>
                         </constraints>
@@ -56,12 +56,14 @@
                     <constraint firstItem="zFP-Mw-ip5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7xb-wU-FvA"/>
                     <constraint firstItem="CO5-8N-kcS" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="9Uv-A4-80q"/>
                     <constraint firstItem="zFP-Mw-ip5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="FaI-53-g4P"/>
-                    <constraint firstAttribute="trailing" secondItem="CO5-8N-kcS" secondAttribute="trailing" constant="8" id="Mcn-2d-5Dz"/>
+                    <constraint firstItem="HSW-YN-CaR" firstAttribute="leading" secondItem="zFP-Mw-ip5" secondAttribute="trailing" constant="20" id="Ohv-Ze-qOQ"/>
                     <constraint firstItem="CO5-8N-kcS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ete-sb-Twh"/>
-                    <constraint firstItem="HSW-YN-CaR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="rL7-XG-9Kk"/>
-                    <constraint firstItem="HSW-YN-CaR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yWi-bQ-1Ys"/>
+                    <constraint firstItem="CO5-8N-kcS" firstAttribute="leading" secondItem="HSW-YN-CaR" secondAttribute="trailing" constant="40" id="mRJ-Qp-Lwr"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="HSW-YN-CaR" firstAttribute="centerY" secondItem="aW0-zy-SZf" secondAttribute="centerY" id="PR9-ig-HPf"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="firstNameLabel" destination="zFP-Mw-ip5" id="BKd-vY-zhH"/>
