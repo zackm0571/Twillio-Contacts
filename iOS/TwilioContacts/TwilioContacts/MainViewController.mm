@@ -45,7 +45,6 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [[[ContactSdk getInstance] getContacts] count];
 }
 -(void)onContactUpdated:(TWContact*)oldContact :(TWContact*)newContact{
