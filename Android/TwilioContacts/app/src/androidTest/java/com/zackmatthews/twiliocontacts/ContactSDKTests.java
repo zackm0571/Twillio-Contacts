@@ -49,4 +49,31 @@ public class ContactSDKTests {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void updateContact(){
+        int index = 0;
+        Contact contact = ContactSdk.getInstance().getContacts().get(index);
+        Contact newContact = new Contact("Ferris", "Bueller", "+17047766551");
+        boolean isSuccessful = ContactSdk.getInstance().updateContact(contact, newContact, (ContactListAdapater)mActivityRule.getActivity().getListView().getAdapter());
+
+
+        final String outputText = (isSuccessful) ?
+                String.format(Locale.getDefault(),"Contact '%s %s' updated",
+                        newContact.firstName, newContact.lastName)
+                : "Cannot add contact, contact already exists";
+        mActivityRule.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(mActivityRule.getActivity(), outputText, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
